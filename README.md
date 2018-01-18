@@ -1,5 +1,5 @@
 ﻿# Raja-Mantri-Chor-Sipahi https://prashantchhabra89.github.io/Raja-Mantri-Chor-Sipahi/
-Raja(Prince)-Mantri(Minister)-Chor(Thief)-Sipahi(Police) is a classical indian game.
+Raja(Prince)-Mantri(Minister)-Chor(Thief)-Sipahi(Police) is a classical indian game.</br>
 4 players play the game. Each player gets role of either a Prince, Minister, Thief or Police.
 The player who gets the role of a prince asks "who is my minister?"
 Minister reveals that "I am your minister".
