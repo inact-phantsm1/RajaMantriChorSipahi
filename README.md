@@ -14,18 +14,18 @@ This game can continue as long as everyone wants to play or winner can be declar
 
 ### Instructions
 #### How to run locally?
-⋅⋅* Make sure git and node is installed</br>
-⋅⋅* Clone repo using git clone</br>
-⋅⋅* npm install</br>
-⋅⋅* npm start</br>
-⋅⋅* It will open browser with app running at localhost:3000/</br>
-⋅⋅* To stop in cmd use ctrl+c</br>
+* Make sure git and node is installed</br>
+* Clone repo using git clone</br>
+* npm install</br>
+* npm start</br>
+* It will open browser with app running at localhost:3000/</br>
+* To stop in cmd use ctrl+c</br>
 #### How deploy on github?
-⋅⋅* Edit package.json by adding a new field named homepage: "homepage": "https://<github-username>.github.io/<projectrepo>"</br>
-⋅⋅* npm run build</br>
-⋅⋅* npm install --save-dev gh-pages</br>
-⋅⋅* Add a new script to the scripts field inside package.json. Let’s call the script deploy : "deploy" : "npm run build&&gh-pages -d build"</br>
-⋅⋅* npm run deploy</br>
-⋅⋅* Now go to repo page on github->settings</br>
-⋅⋅* it should say "Your site is published at ...."</br>
+* Edit package.json by adding a new field named homepage: "homepage": "https://<github-username>.github.io/<projectrepo>"</br>
+* npm run build</br>
+* npm install --save-dev gh-pages</br>
+* Add a new script to the scripts field inside package.json. Let’s call the script deploy : "deploy" : "npm run build&&gh-pages -d build"</br>
+* npm run deploy</br>
+* Now go to repo page on github->settings</br>
+* it should say "Your site is published at ...."</br>
 
