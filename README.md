@@ -21,7 +21,7 @@ This game can continue as long as everyone wants to play or winner can be declar
 * It will open browser with app running at localhost:3000/</br>
 * To stop in cmd use ctrl+c</br>
 #### How deploy on github?
-* Edit package.json by adding a new field named homepage: "homepage": "https://<github-username>.github.io/<projectrepo>"</br>
+* Edit package.json by adding a new field named homepage: "homepage": "https://github-username.github.io/projectrepo"</br>
 * npm run build</br>
 * npm install --save-dev gh-pages</br>
 * Add a new script to the scripts field inside package.json. Let’s call the script deploy : "deploy" : "npm run build&&gh-pages -d build"</br>
