@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Navbar, Jumbotron, Button } from 'react-bootstrap';
 
 class App extends Component {
   render() {
@@ -16,14 +15,14 @@ class Screen extends React.Component{
     constructor() {
         super();
         this.state = {
-            // stepNumber just denote various screens of the game.
-            stepNumber: 0,
             instructionalMessage : 'Click "Start" to start the game',
             actionName : "Start",
-            mainContent: <h3 className = "vcenter">Welcome !!</h3>,
-            // 2-D array. Array of 4 arrays
-            playerNamesAndValues: [[], []]
+            mainContent: <h3 className = "vcenter">Welcome !!</h3>,           
         };
+        // stepNumber just denote various screens of the game.
+        this.stepNumber = 0;
+        // 2-D array. Array of 4 arrays
+        this.playerNamesAndValues =  [[], []];
     }
 
     // Prince(0), Minister(1), Thief(2), Police(3)
@@ -42,7 +41,7 @@ class Screen extends React.Component{
 
     nextStep() {
         //@prashant tod0 - refactor into diff mehods
-        switch (this.state.stepNumber) {
+        switch (this.stepNumber) {
             case 0: const InputPlayerNames = () => {
                 return (
                     <div>
@@ -53,9 +52,9 @@ class Screen extends React.Component{
                     </div>
                 );
             };
+                this.stepNumber = 1;
                 this.setState(
                 {
-                    stepNumber: 1,
                     instructionalMessage: "Enter Player Names",
                     actionName: "Submit",
                     mainContent: InputPlayerNames()
@@ -65,59 +64,60 @@ class Screen extends React.Component{
                 //@prashant maybe try to refactor business logic away from view logic according to react philosphy
             case 1:
                 // Read and store player names
-                this.state.playerNamesAndValues[0][0] = document.getElementById('Player1').value;
-                this.state.playerNamesAndValues[0][1] = document.getElementById('Player2').value;
-                this.state.playerNamesAndValues[0][2] = document.getElementById('Player3').value;
-                this.state.playerNamesAndValues[0][3] = document.getElementById('Player4').value;
+                
+                this.playerNamesAndValues[0][0] = document.getElementById('Player1').value;
+                this.playerNamesAndValues[0][1] = document.getElementById('Player2').value;
+                this.playerNamesAndValues[0][2] = document.getElementById('Player3').value;
+                this.playerNamesAndValues[0][3] = document.getElementById('Player4').value;
 
                 // Randomly assign Prince(0), Minister(1), Thief(2), Police(3)
                 var randomNumber = Math.round(Math.random() * 3);
-                this.state.playerNamesAndValues[1][0] = randomNumber;
+                this.playerNamesAndValues[1][0] = randomNumber;
 
                 randomNumber = Math.round(Math.random() * 3);
-                while (randomNumber === this.state.playerNamesAndValues[1][0]) {
+                while (randomNumber === this.playerNamesAndValues[1][0]) {
                     randomNumber = Math.round(Math.random() * 3);
                 }
-                this.state.playerNamesAndValues[1][1] = randomNumber;
+                this.playerNamesAndValues[1][1] = randomNumber;
 
                 randomNumber = Math.round(Math.random() * 3);
-                while (randomNumber === this.state.playerNamesAndValues[1][0] || randomNumber === this.state.playerNamesAndValues[1][1]) {
+                while (randomNumber === this.playerNamesAndValues[1][0] || randomNumber === this.playerNamesAndValues[1][1]) {
                     randomNumber = Math.round(Math.random() * 3);
                 }
-                this.state.playerNamesAndValues[1][2] = randomNumber;
+                this.playerNamesAndValues[1][2] = randomNumber;
 
                 randomNumber = Math.round(Math.random() * 3);
-                while (randomNumber === this.state.playerNamesAndValues[1][0] || randomNumber === this.state.playerNamesAndValues[1][1] ||
-                    randomNumber === this.state.playerNamesAndValues[1][2] ) {
+                while (randomNumber === this.playerNamesAndValues[1][0] || randomNumber === this.playerNamesAndValues[1][1] ||
+                    randomNumber === this.playerNamesAndValues[1][2] ) {
                     randomNumber = Math.round(Math.random() * 3);
                 }
-                this.state.playerNamesAndValues[1][3] = randomNumber;
+                this.playerNamesAndValues[1][3] = randomNumber;
 
                 //@prashant fix solution for not editing state directly. But what if we don't want to re-render yet?
                 // seems like setState trigerred re-render
                 // Lets convert number to actual strings 0 is for prince
-                this.state.playerNamesAndValues[1][0] = this.convertNumberToString(this.state.playerNamesAndValues[1][0]);
-                this.state.playerNamesAndValues[1][1] = this.convertNumberToString(this.state.playerNamesAndValues[1][1]);
-                this.state.playerNamesAndValues[1][2] = this.convertNumberToString(this.state.playerNamesAndValues[1][2]);
-                this.state.playerNamesAndValues[1][3] = this.convertNumberToString(this.state.playerNamesAndValues[1][3]);
+                this.playerNamesAndValues[1][0] = this.convertNumberToString(this.playerNamesAndValues[1][0]);
+                this.playerNamesAndValues[1][1] = this.convertNumberToString(this.playerNamesAndValues[1][1]);
+                this.playerNamesAndValues[1][2] = this.convertNumberToString(this.playerNamesAndValues[1][2]);
+                this.playerNamesAndValues[1][3] = this.convertNumberToString(this.playerNamesAndValues[1][3]);
 
                 // for showing player names along with chits
                 const PlayerNamesAndChits = () => {
                     return (
                         <div>
-                            <PlayerNameAndChit key = "1" playerName={this.state.playerNamesAndValues[0][0]} playerChit={this.state.playerNamesAndValues[1][0]} />
+                            <PlayerNameAndChit key = "1" playerName={this.playerNamesAndValues[0][0]} playerChit={this.playerNamesAndValues[1][0]} />
                             <br></br>
-                            <PlayerNameAndChit key="2" playerName={this.state.playerNamesAndValues[0][1]} playerChit={this.state.playerNamesAndValues[1][1]} />
+                            <PlayerNameAndChit key="2" playerName={this.playerNamesAndValues[0][1]} playerChit={this.playerNamesAndValues[1][1]} />
                             <br></br>
-                            <PlayerNameAndChit key="3" playerName={this.state.playerNamesAndValues[0][2]} playerChit={this.state.playerNamesAndValues[1][2]} />
+                            <PlayerNameAndChit key="3" playerName={this.playerNamesAndValues[0][2]} playerChit={this.playerNamesAndValues[1][2]} />
                             <br></br>
-                            <PlayerNameAndChit key="4" playerName={this.state.playerNamesAndValues[0][3]} playerChit={this.state.playerNamesAndValues[1][3]} />
+                            <PlayerNameAndChit key="4" playerName={this.playerNamesAndValues[0][3]} playerChit={this.playerNamesAndValues[1][3]} />
                         </div>
                     );
-            };
+                };
+                this.stepNumber = 2;
                 this.setState(
                 {
-                    stepNumber: 2,
                     instructionalMessage: "Every player can individually take a look at their chits",
                     actionName: "Next",
                     mainContent: PlayerNamesAndChits()
@@ -125,51 +125,50 @@ class Screen extends React.Component{
                 break;
 
             case 2:
-                const prince = this.state.playerNamesAndValues[0][this.state.playerNamesAndValues[1].findIndex((Item) => { return Item === "Prince" })];
-                const minister = this.state.playerNamesAndValues[0][this.state.playerNamesAndValues[1].findIndex((Item) => { return Item === "Minister" })];
-                const thief = this.state.playerNamesAndValues[0][this.state.playerNamesAndValues[1].findIndex((Item) => { return Item === "Thief" })];
-                const police = this.state.playerNamesAndValues[0][this.state.playerNamesAndValues[1].findIndex((Item) => { return Item === "Police" })];
+                const prince = this.playerNamesAndValues[0][this.playerNamesAndValues[1].findIndex((Item) => { return Item === "Prince" })];
+                const minister = this.playerNamesAndValues[0][this.playerNamesAndValues[1].findIndex((Item) => { return Item === "Minister" })];
+                const thief = this.playerNamesAndValues[0][this.playerNamesAndValues[1].findIndex((Item) => { return Item === "Thief" })];
+                const police = this.playerNamesAndValues[0][this.playerNamesAndValues[1].findIndex((Item) => { return Item === "Police" })];
 
                 //Randomly pick theif or police to be shown as 3rd and 4th name in instructional message.
                 const random = Math.round(Math.random() * 1);
 
                 // Player should click on thief to win
                 const ThiefAndPolice = () => {
-                    if (random == 0) {
+                    if (random === 0) {
                         return (
                             <div>
                                 <PlayerNameAndChit playerName={police} value="?" info="police" />
                                 <br></br>
-                                <PlayerNameAndChit playerName={thief} value="?" info ="thief" />
+                                <PlayerNameAndChit playerName={thief} value="?" info="thief" />
                             </div>
                         );
                     }
                     else {
                         return (
                             <div>
-                                <PlayerNameAndChit playerName={thief} value = "?" info = "thief" />
+                                <PlayerNameAndChit playerName={thief} value="?" info="thief" />
                                 <br></br>
-                                <PlayerNameAndChit playerName={police} value = "?" info = "police" />
+                                <PlayerNameAndChit playerName={police} value="?" info="police" />
                             </div>
                         );
                     }
                 }
 
-
+                this.stepNumber = 3;
                 this.setState({
-                    instructionalMessage: 
+                    instructionalMessage:
                     prince + "(Prince) says that "
-                    + minister + " (Minister) should find out of who is thief out of " + (random == 0 ? thief : police) +
-                    " and " + (random == 0 ? police : thief),
+                    + minister + " (Minister) should find out of who is thief out of " + (random === 0 ? thief : police) +
+                    " and " + (random === 0 ? police : thief),
                     actionName: "Restart",
-                    stepNumber: 3,
                     mainContent: ThiefAndPolice()
                 });
+                break;
 
             case 3: // Just restart game
-                this.setState({
-                    stepNumber: 0
-                });
+                this.stepNumber = 0;
+                this.nextStep();
                 break;
 
             default: 
@@ -221,10 +220,13 @@ class MainContent extends React.Component {
 class InputPlayerName extends React.Component {
     render() {
         return (
-    <div class="form-group">
-        <label for="inputName">{this.props.name}</label>
-        <input type="text" class="form-control" id={this.props.name} />
-    </div>
+            <div class="form-group">
+                {/* need to use "htmlFor" rather than "for" when using jsx. Otherwise, we will see this error in console
+                "Invalid DOM property `for`. Did you mean `htmlFor`?"
+                Also, pay attention to this syntax for adding comments*/}
+                <label htmlFor="inputName">{this.props.name}</label>
+                <input type="text" class="form-control" id={this.props.name} />
+            </div>
         );
     }
 }
