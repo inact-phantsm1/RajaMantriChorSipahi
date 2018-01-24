@@ -1,4 +1,4 @@
-﻿# Raja-Mantri-Chor-Sipahi
+﻿# Raja(Prince)-Mantri(Minister)-Chor(Thief)-Sipahi(Police)
 
 ### Live Game Link
 [Current live version!](https://prashantchhabra89.github.io/Raja-Mantri-Chor-Sipahi)
@@ -10,11 +10,6 @@
 * Minister reveals that "I am your minister".</br>
 * Prince then says "You have to figure out who is thief and who is police".</br>
   Minister makes the guess.</br>
-
-
-
-Raja(Prince)-Mantri(Minister)-Chor(Thief)-Sipahi(Police) is a classical indian game.</br>
-
 
 ### Score
 * Prince gets 1000 points and plice gets 500 points.</br>
