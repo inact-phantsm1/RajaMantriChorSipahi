@@ -93,9 +93,7 @@ class Screen extends React.Component{
                 }
                 this.playerNamesAndValues[1][3] = randomNumber;
 
-                //@prashant fix solution for not editing state directly. But what if we don't want to re-render yet?
-                // seems like setState trigerred re-render
-                // Lets convert number to actual strings 0 is for prince
+                // Lets convert number to actual strings. 0 is for prince
                 this.playerNamesAndValues[1][0] = this.convertNumberToString(this.playerNamesAndValues[1][0]);
                 this.playerNamesAndValues[1][1] = this.convertNumberToString(this.playerNamesAndValues[1][1]);
                 this.playerNamesAndValues[1][2] = this.convertNumberToString(this.playerNamesAndValues[1][2]);
